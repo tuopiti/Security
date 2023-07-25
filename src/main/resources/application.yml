@@ -1,0 +1,16 @@
+spring:
+  datasource:    
+    url: jdbc:postgresql://localhost:5432/security
+    username: security_piti
+    password: piti123
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        
+application:
+  security:
+    jwt:
+      secret-key: mykey123456789abcdmykey123456789abcdmykey123456789abcd
