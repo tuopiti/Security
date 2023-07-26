@@ -20,9 +20,9 @@ public class FakeUserServiceImpl implements UserService{
 	private final PasswordEncoder passwordEncoder;
 
 	@Override
-	public Optional<AuthUser> loadUserByUsername(String username) {
+	public Optional<AuthUser> loadUserByEmail(String email) {
 		return getAuthUsers().stream()
-			.filter(user -> user.getUsername().equals(username))
+			.filter(user -> user.getUsername().equals(email))
 			.findFirst();
 	}
 	

@@ -20,7 +20,8 @@ public class User {
 	private Long id;
 	private String lastName;
 	private String firstName;
-	private String username;
+	//private String username;
+	private String email;
 	private String password;
 	private Boolean isAccountNonExpired;
 	private Boolean isAccountNonLocked;

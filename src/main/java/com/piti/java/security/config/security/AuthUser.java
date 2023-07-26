@@ -13,7 +13,7 @@ import lombok.Data;
 @Data
 public class AuthUser implements UserDetails{
 	
-	private String username;
+	private String email;
 	private String password;
 	private Set<? extends GrantedAuthority> grantedAuthorities;
 	private Boolean isAccountNonExpired;
@@ -33,7 +33,7 @@ public class AuthUser implements UserDetails{
 
 	@Override
 	public String getUsername() {
-		return username;
+		return email;
 	}
 
 	@Override

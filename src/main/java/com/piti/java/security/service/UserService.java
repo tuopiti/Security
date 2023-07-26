@@ -6,7 +6,9 @@ import com.piti.java.security.config.security.AuthUser;
 import com.piti.java.security.model.User;
 
 public interface UserService {
-	Optional<AuthUser> loadUserByUsername(String username);
+	//Optional<AuthUser> loadUserByUsername(String username);
+	
+	Optional<AuthUser> loadUserByEmail(String email);
 	
 	String signUpUser(User user);
 	

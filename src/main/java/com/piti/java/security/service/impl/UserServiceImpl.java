@@ -36,9 +36,9 @@ public class UserServiceImpl implements UserService{
 	private final ConfirmationTokenEmailRepository confirmationTokenEmailRepository;
 	
 	@Override
-	public Optional<AuthUser> loadUserByUsername(String username) {
-		User user = userRepository.findByUsername(username)
-				.orElseThrow(() -> new ApiException(HttpStatus.BAD_REQUEST, "User not found %s".formatted(username)));
+	public Optional<AuthUser> loadUserByEmail(String email) {
+		User user = userRepository.findByEmail(email)
+				.orElseThrow(() -> new ApiException(HttpStatus.BAD_REQUEST, "User not found %s".formatted(email)));
 	    AuthUser authUser = UserMapper.INSTANCE.toAuthUser(user);
 	    
 	    //authUser.setGrantedAuthorities(user.getRole().getAuthorities());
@@ -62,7 +62,9 @@ public class UserServiceImpl implements UserService{
 	@Override
 	public String signUpUser(User user) {		
 		
-		boolean userExists = userRepository.findByUsername(user.getUsername()).isPresent();
+		//boolean userExists = userRepository.findByUsername(user.getUsername()).isPresent();
+		
+		boolean userExists = userRepository.findByEmail(user.getEmail()).isPresent();
 				             
 		if (userExists) {
             // TODO check of attributes are the same and
@@ -109,7 +111,8 @@ public class UserServiceImpl implements UserService{
         if (expiredAt.isBefore(LocalDateTime.now())) {
             throw new IllegalStateException("token expired");
         }
-        userRepository.enableUser(confirmationToken.getUser().getUsername());        
+        //userRepository.enableUser(confirmationToken.getUser().getUsername()); 
+        userRepository.enableUser(confirmationToken.getUser().getEmail()); 
         confirmationTokenEmailRepository.updateConfirmedAt(token);
         return "confirmed";
 	}

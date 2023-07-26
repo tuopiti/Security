@@ -11,10 +11,10 @@ import com.piti.java.security.model.User;
 import jakarta.transaction.Transactional;
 
 public interface UserRepository extends JpaRepository<User, Long> {
-	Optional<User> findByUsername(String username);
+	Optional<User> findByEmail(String email);
 	
 	@Transactional
 	@Modifying
-	@Query(value ="UPDATE users u SET is_enabled = true WHERE username = :username", nativeQuery=true)
-	int enableUser(@Param("username") String username);
+	@Query(value ="UPDATE users u SET is_enabled = true WHERE email = :email", nativeQuery=true)
+	int enableUser(@Param("email") String email);
 }
